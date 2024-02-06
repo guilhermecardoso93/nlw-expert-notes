@@ -1,3 +1,4 @@
+import * as Dialog from '@radix-ui/react-dialog';
 import Logo from "./assets/logo-nlw-expert.svg";
 import { NewNoteCard } from "./components/new-note-card";
 import { NoteCard } from "./components/note-card";
@@ -9,6 +10,7 @@ const note = {
 
 export function App() {
   return (
+    <Dialog.Root>
     <div className="mx-auto max-w-6xl my-12 space-y-6">
       <img src={Logo} alt="NLW Expert" />
 
@@ -27,5 +29,7 @@ export function App() {
         <NoteCard note={note} />
       </div>
     </div>
+    </Dialog.Root>
+
   );
 }
