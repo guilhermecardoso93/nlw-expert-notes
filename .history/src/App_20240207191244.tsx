@@ -34,15 +34,6 @@ export function App() {
     localStorage.setItem("notes", JSON.stringify(notesArray));
   }
 
-  function oneNoteDelete(id: string) {
-    const notesArray = notes.filter((note) => {
-      return note.id !== id;
-    });
-
-    setNotes(notesArray);
-    localStorage.setItem("notes", JSON.stringify(notesArray));
-  }
-
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
 
@@ -51,13 +42,11 @@ export function App() {
 
   const filteredNotes =
     search !== ""
-      ? notes.filter((note) =>
-          note.content.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-        )
+      ? notes.filter((note) => note.content.includes(search))
       : notes;
 
   return (
-    <div className="mx-auto max-w-6xl my-12 space-y-6 px-5">
+    <div className="mx-auto max-w-6xl my-12 space-y-6">
       <img src={Logo} alt="NLW Expert" />
 
       <form className="w-full">
@@ -71,10 +60,10 @@ export function App() {
 
       <div className="h-px bg-slate-700" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px] ">
+      <div className="grid grid-cols-3 gap-6 auto-rows-[250px]">
         <NewNoteCard onNoteCreate={onNoteCreate} />
         {filteredNotes.map((note) => {
-          return <NoteCard note={note} key={note.id} oneNoteDelete={oneNoteDelete}/>;
+          return <NoteCard note={note} key={note.id} />;
         })}
       </div>
     </div>

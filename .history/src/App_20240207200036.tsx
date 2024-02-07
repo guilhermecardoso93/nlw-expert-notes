@@ -36,7 +36,7 @@ export function App() {
 
   function oneNoteDelete(id: string) {
     const notesArray = notes.filter((note) => {
-      return note.id !== id;
+      return note.id === id;
     });
 
     setNotes(notesArray);
